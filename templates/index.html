@@ -1,0 +1,23 @@
+<html>
+<head>
+   <style>
+   body { font-family:arial; margin:20px; }
+   </style>
+
+</head>
+<body>
+     <h1> Niall's Stock Momentum Screener</h1>
+
+      <form>
+          <select name ="momentum">
+              {% for momentum in momentums %}
+                  <option value="{{momentum}}">{{momentums[momentum]}}</option>
+              {% endfor %}
+          </select>
+          <input type = 'submit' value="scan">
+      </form>
+
+
+</body>
+
+</html>
