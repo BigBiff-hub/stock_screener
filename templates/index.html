@@ -2,29 +2,29 @@
 <head>
     <style>
         body { font-family: arial; margin: 15px; }
-        td { padding: 5px; }
-        .bullish { background: blue; color: green; }
+        td { padding: 15px; }
+        .bullish { background: green; color: orange; }
         .bearish { background: red; color: black; }
     </style>
 </head>
 <body>
-    <h1>Nialls Stock Pattern Screener</h1>
+    <h1>Niall's Stock Pattern Screener</h1>
     <form>
         <select name="pattern">
-            <option value="">-- Select a Pattern --</option>
+            <option value="">->Please Select a Candlestick Pattern from the dropdown</option>
             {% for key in candlestick_patterns %}
                 <option value="{{ key }}" {% if pattern == key %}selected="selected"{% endif %}>{{ candlestick_patterns[key] }}</option>
             {% endfor %}
         </select>
 
-        <input type="submit" value="Scan" />
+        <input type="submit" value="Submit" />
     </form>
 
     <table>
         <tr>
-            <th>symbol</th>
-            <th>company</th>
-            <th>signal</th>
+            <th>Symbol</th>
+            <th>Company</th>
+            <th>Bull or Bear?</th>
         </tr>
         {% for stock in stocks %}
             {% if stocks[stock][pattern] %}
@@ -40,6 +40,7 @@
                 </td>
             <tr>
                 <td colspan="3">
+                    <!-- Gets chart from finviz by using companys ticker-->
                     <img src="https://finviz.com/chart.ashx?t={{ stock }}&ty=c&ta=1&p=d&s=l" />
                 </td>
             </tr>
