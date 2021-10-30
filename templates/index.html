@@ -1,11 +1,7 @@
 <html>
 <head>
-    <style>
-        body { font-family: arial; margin: 15px; }
-        td { padding: 15px; }
-        .bullish { background: green; color: orange; }
-        .bearish { background: red; color: black; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+     <link href="/static/styles.css" rel="stylesheet">
 </head>
 <body>
     <h1>Niall's Stock Pattern Screener</h1>
@@ -39,7 +35,7 @@
                     {{ stocks[stock][pattern]}}
                 </td>
             <tr>
-                <td colspan="3">
+                <td colspan="4">
                     <!-- Gets chart from finviz by using companys ticker -->
                     <img src="https://finviz.com/chart.ashx?t={{ stock }}&ty=c&ta=1&p=d&s=l" />
                 </td>
