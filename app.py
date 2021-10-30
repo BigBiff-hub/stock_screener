@@ -2,20 +2,20 @@ import os, csv
 import talib
 import yfinance as yf
 import pandas
-from flask import Flask, escape, request, render_template
+from flask import Flask,  request, render_template
 from patterns import candlestick_patterns
 
 app = Flask(__name__)
 
-@app.route('/snapshot')
-def snapshot():
+@app.route('/capture')
+def capture():
     with open('data/s&p500.csv') as f:
         for line in f:
             if "," not in line:
                 continue
             symbol = line.split(",")[0]
             data = yf.download(symbol, start="2020-01-01", end="2020-08-01")
-            data.to_csv('datasets/daily/{}.csv'.format(symbol))
+            data.to_csv('data/daily/{}.csv'.format(symbol))
 
     return {
         "code": "success"
@@ -32,7 +32,7 @@ def index():
 
     if pattern:
         for filename in os.listdir('data/daily'):
-            df = pandas.read_csv('data/daily/{}'.format(filename))
+            df = pandas.read_csv(f'data/daily/{filename}')
             pattern_function = getattr(talib, pattern)
             symbol = filename.split('.')[0]
 
@@ -47,6 +47,6 @@ def index():
                 else:
                     stocks[symbol][pattern] = None
             except Exception as e:
-                print('failed on filename: ', filename)
+                print('Pattern failed on : ', filename)
 
     return render_template('index.html', candlestick_patterns=candlestick_patterns, stocks=stocks, pattern=pattern)
