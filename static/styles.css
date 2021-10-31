@@ -19,8 +19,9 @@ div
     display: block;
     text-align: center;
 }
-table{
-    display: block;
-    text-align: center;
+.centertable {
+    margin: 25px;
+  width: 350px;
+  height: 200px;
 
 }
