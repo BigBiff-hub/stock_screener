@@ -1,5 +1,6 @@
 <html>
 <head>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
     <link href="/static/styles.css" rel="stylesheet">
 </head>
@@ -8,20 +9,22 @@
     <div>
     <form>
         <select name="pattern">
-            <option value="">->Please Select a Candlestick Pattern from the dropdown</option>
+            <option value="">->Please Select a Candlestick Pattern from the dropdown<-</option>
             {% for key in candlestick_patterns %}
-                <option value="{{ key }}" {% if pattern == key %}selected="selected"{% endif %}>{{ candlestick_patterns[key] }}</option>
+                <option value="{{ company }}" {% if pattern == company %}selected="selected"{% endif %}>{{ candlestick_patterns[company] }}</option>
             {% endfor %}
         </select>
 
         <input type="submit" value="Submit" />
     </form>
     </div>
-    <table>
+
+    <div class = "centertable">
+    <table >
         <tr>
             <th>Symbol</th>
             <th>Company</th>
-            <th>Bull or Bear?</th>
+            <th>Bullish or Bearish?</th>
         </tr>
         {% for stock in stocks %}
             {% if stocks[stock][pattern] %}
@@ -44,5 +47,6 @@
             {% endif %}
         {% endfor %}
     </table>
+        </div>
 </body>
 </html>
