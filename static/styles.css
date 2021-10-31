@@ -3,3 +3,24 @@ h1 {
     font-family: 'Montserrat', sans-serif;
     font-size: 48px;
 }
+
+select {
+  position: center;
+  font-family: Arial;
+  background-color: DodgerBlue;
+}
+body{
+   position: center;
+   background-color: LightGray;
+
+}
+div
+{
+    display: block;
+    text-align: center;
+}
+table{
+    display: block;
+    text-align: center;
+
+}
