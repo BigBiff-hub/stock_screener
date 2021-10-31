@@ -19,7 +19,7 @@ def capture():
             data.to_csv('data/daily/{}.csv'.format(symbol))
 
     return {
-        "code": "success"
+        "code":"compiled"
     }
 
 
@@ -33,22 +33,23 @@ def index():
             stocks[row[0]] = {'company': row[1]}
 
     if pattern:
-        for filename in os.listdir('data/daily'):
-            df = pandas.read_csv(f'data/daily/{filename}')
+        for FILE in os.listdir('data/daily'):
+            df = pandas.read_csv(f'data/daily/{FILE}')
             pattern_function = getattr(talib, pattern)
-            ticker = filename.split('.')[0]
+            ticker = FILE.split('.')[0]
 
             try:
                 results = pattern_function(df['Open'], df['High'], df['Low'], df['Close'])
-                last = results.tail(1).values[0]
+                company_check = results.tail(1).values[0]
 
-                if last > 0:
+                if company_check > 0:
                     stocks[ticker][pattern] = 'bullish'
-                elif last < 0:
+                elif company_check < 0:
                     stocks[ticker][pattern] = 'bearish'
                 else:
                     stocks[ticker][pattern] = None
             except Exception as e:
-                print(f'Pattern failed on :{filename}')
+                print(f'Pattern failed on :{FILE} no pattern found in this file')
+
 
     return render_template('index.html', candlestick_patterns=candlestick_patterns, stocks=stocks, pattern=pattern)
