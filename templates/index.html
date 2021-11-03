@@ -11,7 +11,7 @@
         <select name="pattern">
             <option value="">->Please Select a Candlestick Pattern from the dropdown<-</option>
             {% for key in candlestick_patterns %}
-                <option value="{{ company }}" {% if pattern == company %}selected="selected"{% endif %}>{{ candlestick_patterns[company] }}</option>
+                <option value="{{ key }}" {% if pattern == key %}selected="selected"{% endif %}>{{ candlestick_patterns[key] }}</option>
             {% endfor %}
         </select>
 
